@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  mqtt:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: mosquitto
+    restart: always
+    ports:
+      - "1883:1883" # MQTT Broker Port
+      - "9001:9001" # WebSocket MQTT Port
+    environment:
+      - MQTT_USER=username
+      - MQTT_PASSWORD=password
+    volumes:
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+
+volumes:
+  mosquitto_data:
+  mosquitto_log:
