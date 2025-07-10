@@ -36,13 +36,39 @@ chmod +x entrypoint.sh
 ./entrypoint.sh
 ```
 
-This will build and run your Mosquitto container.
+---
+
+## 🐳 **Build and Run with Docker Compose**
+
+Alternatively, build and run using Docker Compose directly:
+
+```bash
+docker-compose up -d --build
+```
+
+This will build the Mosquitto image and run it in detached mode.
 
 ---
 
-## ✅ **Done**
+## ✅ **Verify the Broker is Running**
 
-Your MQTT broker should now be running and accessible based on your configured ports.
+Check running containers:
+
+```bash
+docker ps
+```
+
+Test publishing and subscribing:
+
+```bash
+# Publish
+mosquitto_pub -h <broker-ip> -t test/topic -m "hello"
+
+# Subscribe
+mosquitto_sub -h <broker-ip> -t test/topic
+```
+
+Replace `<broker-ip>` with your host IP or container IP as needed.
 
 ---
 
